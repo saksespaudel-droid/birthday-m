@@ -1,2 +1,191 @@
 # birthday-m
 MY PERSONAL WEB
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Happy Birthday, M ✨</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #fde2e4, #e0c3fc);
+      color: #2d2d2d;
+      overflow-x: hidden;
+    }
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 2rem;
+    }
+    .card {
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(10px);
+      border-radius: 24px;
+      padding: 3rem 2.5rem;
+      max-width: 720px;
+      box-shadow: 0 30px 60px rgba(0,0,0,0.12);
+      animation: fadeIn 1.6s ease;
+    }
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.5rem, 5vw, 3.6rem);
+      margin-bottom: 0.5rem;
+    }
+    h1 span { color: #a855f7; }
+    h2 { font-weight: 400; margin-top: 0; color: #555; }
+    p { line-height: 1.8; font-size: 1.05rem; margin: 1.5rem 0; }
+    .divider {
+      width: 80px;
+      height: 4px;
+      background: linear-gradient(90deg, #ec4899, #a855f7);
+      border-radius: 4px;
+      margin: 2rem auto;
+    }
+    .message {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.15rem;
+    }
+    .photo-section img {
+      width: 100%;
+      max-width: 360px;
+      border-radius: 20px;
+      margin: 1.5rem auto;
+      display: block;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+    }
+    .countdown {
+      margin-top: 2rem;
+    }
+    .countdown h3 {
+      font-weight: 500;
+      margin-bottom: 1rem;
+    }
+    .timer {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+    }
+    .timer div {
+      background: rgba(255,255,255,0.9);
+      border-radius: 16px;
+      padding: 1rem 0.5rem;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    }
+    .timer span {
+      display: block;
+      font-size: 1.6rem;
+      font-weight: 600;
+    }
+    .timer small {
+      font-size: 0.75rem;
+      color: #666;
+    }
+    .signature { margin-top: 2.5rem; font-size: 0.95rem; color: #666; }
+    .heart { position: fixed; font-size: 20px; animation: floatUp 6s linear infinite; opacity: 0.7; }
+    footer { text-align: center; padding: 1.5rem; font-size: 0.85rem; color: #444; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes floatUp { 0% { transform: translateY(100vh) scale(1); opacity: 0; } 10% { opacity: 0.8; } 100% { transform: translateY(-10vh) scale(1.6); opacity: 0; } }
+    @media (max-width: 600px) {
+      .card { padding: 2.2rem 1.6rem; }
+      .message { font-size: 1.05rem; }
+      .timer { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+
+  <section class="hero">
+    <div class="card">
+      <h1>Happy Birthday, <span>M</span> 🎉</h1>
+      <h2>Today is all about you</h2>
+
+      <div class="divider"></div>
+
+      <p class="message">
+        I still remember a quiet winter evening — the kind where the air felt soft
+        and time slowed down just enough. Moments like that remind me how even simple
+        days can stay meaningful long after they pass.
+      </p>
+
+      <p class="message">
+        This message comes with no expectations, only good wishes. I hope the year
+        ahead treats you kindly, brings steady happiness, and gives you space to grow
+        into everything you want to become.
+      </p>
+
+      <div class="divider"></div>
+
+      <p class="signature">
+        With sincerity and good wishes,<br />
+        — Someone who still wishes you the best
+      </p>
+          <div class="divider"></div>
+
+      <div class="photo-section">
+        <img src="m.jpg" alt="A warm memory" />
+      </div>
+
+      <div class="countdown">
+        <h3>Countdown to your birthday</h3>
+        <div class="timer" id="timer">
+          <div><span id="days">0</span><small>Days</small></div>
+          <div><span id="hours">0</span><small>Hours</small></div>
+          <div><span id="minutes">0</span><small>Minutes</small></div>
+          <div><span id="seconds">0</span><small>Seconds</small></div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <footer>
+    Made with care, just for M ✨
+  </footer>
+
+  <script>
+    const emojis = ['❤️','✨','🌸','💖','🎈'];
+    function createHeart() {
+      const heart = document.createElement('div');
+      heart.className = 'heart';
+      heart.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.animationDuration = 4 + Math.random() * 4 + 's';
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 7000);
+    }
+    setInterval(createHeart, 700);
+  
+    // Countdown: Magh 21, 2082 BS ≈ Feb 4, 2026 12:00 AM NPT
+    const targetDate = new Date('2026-02-04T00:00:00+05:45');
+
+    function updateCountdown() {
+      const now = new Date();
+      const diff = targetDate - now;
+
+      if (diff <= 0) return;
+
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((diff / (1000 * 60)) % 60);
+      const seconds = Math.floor((diff / 1000) % 60);
+
+      document.getElementById('days').textContent = days;
+      document.getElementById('hours').textContent = hours;
+      document.getElementById('minutes').textContent = minutes;
+      document.getElementById('seconds').textContent = seconds;
+    }
+
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+
+  </script>
+
+</body>
+</html>
